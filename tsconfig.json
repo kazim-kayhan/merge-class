@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "ES6",                       
+    "module": "NodeNext",
+    "declaration": true,                  
+    "outDir": "./dist", 
+    "moduleResolution": "nodenext",                  
+    "strict": true,                       
+    "esModuleInterop": true,              
+    "skipLibCheck": true,                 
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": [
+    "index.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
