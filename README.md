@@ -9,7 +9,6 @@ A simple utility for conditionally constructing and efficiently merging classNam
 - [Installation](#installation)
 - [Usage](#usage)
 - [API](#api)
-- [Development](#development)
 - [License](#license)
 
 ## Installation
@@ -17,13 +16,19 @@ A simple utility for conditionally constructing and efficiently merging classNam
 Using npm:
 
 ```bash
-npm install merge-class
+npm install -D merge-class
+```
+
+Using pnpm:
+
+```bash
+pnpm add -D merge-class
 ```
 
 Using yarn:
 
 ```bash
-yarn add merge-class
+yarn add -D merge-class
 ```
 
 ## Usage
@@ -48,27 +53,6 @@ Merges provided class values using `clsx` and `tailwind-merge`.
 - `inputs`: Class values to merge.
 
 **Returns**: Merged class string.
-
-## Development
-
-1. Clone the repository:
-
-```bash
-git clone https://github.com/kazim-kayhan/merge-class.git
-```
-
-1. Install dependencies:
-
-```bash
-cd merge-class
-npm install
-```
-
-1. Build:
-
-```bash
-npm run build
-```
 
 ## License
 
