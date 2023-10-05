@@ -1,6 +1,6 @@
 # merge-class
 
-A simple utility to merge class names efficiently using `clsx` and `tailwind-merge`.
+A simple utility for conditionally constructing and efficiently merging className strings without style conflicts using `clsx` and `tailwind-merge`.
 
 ![npm](https://img.shields.io/npm/v/merge-class) ![build](https://img.shields.io/github/workflow/status/your-username/merge-class/CI) ![license](https://img.shields.io/npm/l/merge-class)
 
