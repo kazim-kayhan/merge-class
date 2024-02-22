@@ -1,6 +1,6 @@
 # merge-class
 
-Effortlessly creates and combines className strings without style conflicts using `clsx` and `tailwind-merge`.
+Effortlessly creates and merges className strings without style conflicts using `clsx` and `tailwind-merge`.
 
 ![npm](https://img.shields.io/npm/v/merge-class) ![build](https://img.shields.io/github/workflow/status/your-username/merge-class/CI) ![license](https://img.shields.io/npm/l/merge-class)
 
@@ -16,19 +16,19 @@ Effortlessly creates and combines className strings without style conflicts usin
 Using npm:
 
 ```bash
-npm install -D merge-class
+npm i merge-class
 ```
 
 Using pnpm:
 
 ```bash
-pnpm add -D merge-class
+pnpm add merge-class
 ```
 
 Using yarn:
 
 ```bash
-yarn add -D merge-class
+yarn add merge-class
 ```
 
 ## Usage
@@ -36,7 +36,7 @@ yarn add -D merge-class
 Import `mc` from `merge-class`:
 
 ```typescript
-import { mc } from 'merge-class';
+import mc from 'merge-class';
 
 const className = mc('bg-red-500', 'hover:bg-red-600', 'active:bg-red-700');
 console.log(className);
