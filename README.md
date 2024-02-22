@@ -36,7 +36,7 @@ yarn add merge-class
 Import `mc` from `merge-class`:
 
 ```typescript
-import mc from 'merge-class';
+import { mc } from 'merge-class';
 
 const className = mc('bg-red-500', 'hover:bg-red-600', 'active:bg-red-700');
 console.log(className);
