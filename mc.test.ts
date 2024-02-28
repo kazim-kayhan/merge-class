@@ -2,16 +2,16 @@ import { mc } from './';
 
 describe('mc function', () => {
   it('should combine class names into a single string', () => {
-    expect(mc('class1', 'class2')).toBe('class1 class2');
+    expect(mc('font-bold', 'w-4')).toBe('font-bold w-4');
   });
 
   it('should handle conditional classes correctly', () => {
     const condition = true;
-    expect(mc('class1', condition && 'class2')).toBe('class1 class2');
+    expect(mc('font-bold', condition && 'w-4')).toBe('font-bold w-4');
   });
 
   it('should eliminate undefined and null values', () => {
-    expect(mc('class1', undefined, 'class2', null)).toBe('class1 class2');
+    expect(mc('font-bold', undefined, 'w-4', null)).toBe('font-bold w-4');
   });
 
   it('should merge duplicate classes and prioritize Tailwind utility classes', () => {
@@ -19,22 +19,20 @@ describe('mc function', () => {
   });
 
   it('should handle arrays of classes', () => {
-    expect(mc(['class1', 'class2'], ['class3'])).toBe('class1 class2 class3');
+    expect(mc(['font-bold', 'w-4'], ['px-2'])).toBe('font-bold w-4 px-2');
   });
 
   it('should handle nested arrays of classes', () => {
-    expect(mc(['class1', ['class2', 'class3']])).toBe('class1 class2 class3');
+    expect(mc(['font-bold', ['w-4', 'px-2']])).toBe('font-bold w-4 px-2');
   });
 
   it('should process objects with boolean values', () => {
-    expect(mc({ class1: true, class2: false, class3: true })).toBe('class1 class3');
+    expect(mc({ 'font-bold': true, 'w-4': false, 'px-2': true })).toBe('font-bold px-2');
   });
 
   it('should handle a mix of types', () => {
     const condition = false;
-    expect(mc('class1', ['class2', { class3: true, class4: condition }])).toBe(
-      'class1 class2 class3'
-    );
+    expect(mc('font-bold', ['w-4', { 'px-2': true, 'h-5': condition }])).toBe('font-bold w-4 px-2');
   });
 
   it('should prioritize correctly with Tailwind utilities', () => {

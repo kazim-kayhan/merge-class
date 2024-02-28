@@ -2,14 +2,13 @@
 
 Effortlessly creates and merges className strings without style conflicts using `clsx` and `tailwind-merge`.
 
-![npm](https://img.shields.io/npm/v/merge-class) ![build](https://img.shields.io/github/workflow/status/your-username/merge-class/CI) ![license](https://img.shields.io/npm/l/merge-class)
+![npm](https://img.shields.io/npm/v/merge-class) ![license](https://img.shields.io/npm/l/merge-class)
 
 ## Table of Contents
 
 - [Installation](#installation)
 - [Usage](#usage)
-- [API](#api)
-- [License](#license)
+- [Tests](#tests)
 
 ## Installation
 
@@ -39,21 +38,94 @@ Import `mc` from `merge-class`:
 import { mc } from 'merge-class';
 
 const className = mc('bg-red-500', 'hover:bg-red-600', 'active:bg-red-700');
-console.log(className);
+console.log(className); // output: 'bg-red-500 hover:bg-red-600 active:bg-red-700'
 ```
 
-## API
+## Tests
 
-### mc(...inputs: ClassValue[]): string
+The `mc` (merge class) function is designed to combine class names into a single string, handling various cases such as conditional classes, undefined/null values, duplicates, arrays, nested arrays, and objects with boolean values. It also prioritizes Tailwind utility classes correctly.
 
-Merges provided class values using `clsx` and `tailwind-merge`.
+### Test Cases
 
-**Parameters**:
+#### Combine Class Names
 
-- `inputs`: Class values to merge.
+- **Description**: Should combine class names into a single string.
+- **Test**:
 
-**Returns**: Merged class string.
+  ```javascript
+  expect(mc('font-bold', 'w-4')).toBe('font-bold w-4');
+  ```
 
-## License
+#### Handle Conditional Classes
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+- **Description**: Should handle conditional classes correctly.
+- **Test**:
+
+  ```javascript
+  const condition = true;
+  expect(mc('font-bold', condition && 'w-4')).toBe('font-bold w-4');
+  ```
+
+#### Eliminate Undefined and Null Values
+
+- **Description**: Should eliminate undefined and null values.
+- **Test**:
+
+  ```javascript
+  expect(mc('font-bold', undefined, 'w-4', null)).toBe('font-bold w-4');
+  ```
+
+#### Merge Duplicate Classes with Tailwind Utility Classes Priority
+
+- **Description**: Should merge duplicate classes and prioritize Tailwind utility classes.
+- **Test**:
+
+  ```javascript
+  expect(mc('p-4', 'p-2')).toBe('p-2');
+  ```
+
+#### Handle Arrays of Classes
+
+- **Description**: Should handle arrays of classes.
+- **Test**:
+
+  ```javascript
+  expect(mc(['font-bold', 'w-4'], ['px-2'])).toBe('font-bold w-4 px-2');
+  ```
+
+#### Handle Nested Arrays of Classes
+
+- **Description**: Should handle nested arrays of classes.
+- **Test**:
+
+  ```javascript
+  expect(mc(['font-bold', ['w-4', 'px-2']])).toBe('font-bold w-4 px-2');
+  ```
+
+#### Process Objects with Boolean Values
+
+- **Description**: Should process objects with boolean values.
+- **Test**:
+
+  ```javascript
+  expect(mc({ 'font-bold': true, 'w-4': false, 'px-2': true })).toBe('font-bold px-2');
+  ```
+
+#### Handle a Mix of Types
+
+- **Description**: Should handle a mix of types.
+- **Test**:
+
+  ```javascript
+  const condition = false;
+  expect(mc('font-bold', ['w-4', { 'px-2': true, 'h-5': condition }])).toBe('font-bold w-4 px-2');
+  ```
+
+#### Prioritize Correctly with Tailwind Utilities
+
+- **Description**: Should prioritize correctly with Tailwind utilities.
+- **Test**:
+
+  ```javascript
+  expect(mc('text-red-500', 'text-blue-500')).toBe('text-blue-500');
+  ```
