@@ -35,10 +35,14 @@ yarn add merge-class
 Import `mc` from `merge-class`:
 
 ```typescript
-import { mc } from 'merge-class';
+import { mc } from 'merge-class'
 
-const className = mc('bg-red-500', 'hover:bg-red-600', 'active:bg-red-700');
-console.log(className); // output: 'bg-red-500 hover:bg-red-600 active:bg-red-700'
+const className = mc(
+  'bg-green-500',
+  'hover:bg-green-600',
+  'active:bg-green-700'
+)
+console.log(className) // output: 'bg-green-500 hover:bg-green-600 active:bg-green-700'
 ```
 
 ## Tests
@@ -53,7 +57,7 @@ The `mc` (merge class) function is designed to combine class names into a single
 - **Test**:
 
   ```javascript
-  expect(mc('font-bold', 'w-4')).toBe('font-bold w-4');
+  expect(mc('font-bold', 'w-4')).toBe('font-bold w-4')
   ```
 
 #### Handle Conditional Classes
@@ -62,8 +66,8 @@ The `mc` (merge class) function is designed to combine class names into a single
 - **Test**:
 
   ```javascript
-  const condition = true;
-  expect(mc('font-bold', condition && 'w-4')).toBe('font-bold w-4');
+  const condition = true
+  expect(mc('font-bold', condition && 'w-4')).toBe('font-bold w-4')
   ```
 
 #### Eliminate Undefined and Null Values
@@ -72,7 +76,7 @@ The `mc` (merge class) function is designed to combine class names into a single
 - **Test**:
 
   ```javascript
-  expect(mc('font-bold', undefined, 'w-4', null)).toBe('font-bold w-4');
+  expect(mc('font-bold', undefined, 'w-4', null)).toBe('font-bold w-4')
   ```
 
 #### Merge Duplicate Classes with Tailwind Utility Classes Priority
@@ -81,7 +85,7 @@ The `mc` (merge class) function is designed to combine class names into a single
 - **Test**:
 
   ```javascript
-  expect(mc('p-4', 'p-2')).toBe('p-2');
+  expect(mc('p-4', 'p-2')).toBe('p-2')
   ```
 
 #### Handle Arrays of Classes
@@ -90,7 +94,7 @@ The `mc` (merge class) function is designed to combine class names into a single
 - **Test**:
 
   ```javascript
-  expect(mc(['font-bold', 'w-4'], ['px-2'])).toBe('font-bold w-4 px-2');
+  expect(mc(['font-bold', 'w-4'], ['px-2'])).toBe('font-bold w-4 px-2')
   ```
 
 #### Handle Nested Arrays of Classes
@@ -99,7 +103,7 @@ The `mc` (merge class) function is designed to combine class names into a single
 - **Test**:
 
   ```javascript
-  expect(mc(['font-bold', ['w-4', 'px-2']])).toBe('font-bold w-4 px-2');
+  expect(mc(['font-bold', ['w-4', 'px-2']])).toBe('font-bold w-4 px-2')
   ```
 
 #### Process Objects with Boolean Values
@@ -108,7 +112,9 @@ The `mc` (merge class) function is designed to combine class names into a single
 - **Test**:
 
   ```javascript
-  expect(mc({ 'font-bold': true, 'w-4': false, 'px-2': true })).toBe('font-bold px-2');
+  expect(mc({ 'font-bold': true, 'w-4': false, 'px-2': true })).toBe(
+    'font-bold px-2'
+  )
   ```
 
 #### Handle a Mix of Types
@@ -117,8 +123,10 @@ The `mc` (merge class) function is designed to combine class names into a single
 - **Test**:
 
   ```javascript
-  const condition = false;
-  expect(mc('font-bold', ['w-4', { 'px-2': true, 'h-5': condition }])).toBe('font-bold w-4 px-2');
+  const condition = false
+  expect(mc('font-bold', ['w-4', { 'px-2': true, 'h-5': condition }])).toBe(
+    'font-bold w-4 px-2'
+  )
   ```
 
 #### Prioritize Correctly with Tailwind Utilities
@@ -127,5 +135,5 @@ The `mc` (merge class) function is designed to combine class names into a single
 - **Test**:
 
   ```javascript
-  expect(mc('text-red-500', 'text-blue-500')).toBe('text-blue-500');
+  expect(mc('text-green-500', 'text-blue-500')).toBe('text-blue-500')
   ```
